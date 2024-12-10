@@ -1,0 +1,17 @@
+{
+    "name": "app/cartilha",
+    "description": "Cartilha de Serviços",
+    "autoload": {
+        "psr-4": {
+            "Cartilha\\BD\\": "src/",
+            "Cartilha\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hugo Josué lema das neves",
+            "email": "131496781+MusgoNato@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
