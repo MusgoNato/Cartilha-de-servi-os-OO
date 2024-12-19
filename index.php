@@ -3,8 +3,20 @@
 require_once 'vendor/autoload.php';
 
 use Cartilha\BD\Banco;
+use Cartilha\BD\Servico;
 
 $banco = new Banco('localhost', 'root', 'cartilha', '', 'secretarias');
+
+// Caso dentro da url exista o id da secretaria, passo o id ao construtor, para listar os servicos relacionados a essa secretaria
+if(isset($_REQUEST['secretaria']))
+{
+    
+    $secretaria = new Servico($_REQUEST['secretaria']);
+
+    echo "<h3>Serviços</h3>";
+    $secretaria->exibe_servicos();
+
+}
 
 ?>
 
@@ -21,7 +33,7 @@ $banco = new Banco('localhost', 'root', 'cartilha', '', 'secretarias');
         <h2>Secretarias</h2>
         <?php
             // Chamo a listagem de secretarias
-            $banco->listar();
+            $banco->exibe_secretarias();
         ?>
     </div>
 </body>

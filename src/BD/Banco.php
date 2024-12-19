@@ -6,14 +6,14 @@ use PDOException;
 
 class Banco
 {
-    private $host;
-    private $username;
-    private $name_bd;
-    private $pass;
+    public $host;
+    public $username;
+    public $name_bd;
+    public $pass;
 
     public $table_name;
 
-    private $conexao;
+    public $conexao;
 
     /**
      * Summary of __construct
@@ -53,7 +53,7 @@ class Banco
     }
 
 
-    public function listar()
+    public function exibe_secretarias()
     {   
         // Prepara e executa o camndo SQL
         $query = $this->conexao->prepare("SELECT * FROM `secretarias`");
@@ -66,8 +66,8 @@ class Banco
         {
             foreach($linhas as $linha)
             {
-                // Passo para a url o id da secretaria pego do banco de dados
-                echo "<li><a href='?ID_secretaria=".$linha['ID_secretaria']."'>".$linha['nome']."</a><li>\n";
+                // Passo para a url o id da secretaria pega do banco de dados
+                echo "<li><a href='?secretaria=".$linha['ID_secretaria']."'>".$linha['nome']."</a><li>\n";
             }
         }   
     }
