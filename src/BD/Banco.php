@@ -67,7 +67,7 @@ class Banco
             foreach($linhas as $linha)
             {
                 // Passo para a url o id da secretaria pega do banco de dados
-                echo "<li><a href='?secretaria=".$linha['ID_secretaria']."'>".$linha['nome']."</a><li>\n";
+                echo "<li><a href='?secretaria=".$linha['ID_secretaria']."'>".$linha['nome']."</a></li>";
             }
         }   
     }
