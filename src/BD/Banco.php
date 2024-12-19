@@ -48,9 +48,6 @@ class Banco
 
         }catch(PDOException $e)
         {
-
-            // Mostro os erros por meio do log
-            error_log($e->getMessage());
             die("Não foi possível se conectar ao banco de dados!");
         }
     }
