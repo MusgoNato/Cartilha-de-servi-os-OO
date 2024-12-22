@@ -1,3 +1,12 @@
+<h1>Cartilha de Serviços</h1>
+
+<!-- Campo de Busca -->
+<div>
+    <form method="GET">
+        <input type="search" name="search" placeholder="Digite o que deseja buscar...">
+    </form> 
+</div>
+
 <?php
 
 require_once 'vendor/autoload.php';
@@ -17,6 +26,12 @@ if(isset($_REQUEST['secretaria']))
     $secretaria->exibe_servicos();
 }
 
+// Mostra os resultados da busca
+if(isset($_GET['search']))
+{
+    $banco->resultado_busca($_GET['search']);    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +46,6 @@ if(isset($_REQUEST['secretaria']))
     <title>Cartilha</title>
 </head>
 <body>
-    <h1>Cartilha de Serviços</h1>
     <div>
         <h2>Secretarias</h2>
         <?php

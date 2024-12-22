@@ -40,20 +40,20 @@ class Servico extends Banco
                 // Jogada de indice pra pegar o servico correto
                 $i = ((int)$_REQUEST['servico']) - ((int)$_REQUEST['secretaria']);
                 
-                echo "<ul class='list-group'>";
-                echo "<li class='list-group-item'>". htmlspecialchars($servicos[$i]['descricao'])."</li>";
-                echo "<li class='list-group-item'>Local de acesso: ". htmlspecialchars($servicos[$i]['local_de_acesso'])."</li>";
-                echo "<li class='list-group-item'>Canais de acesso: ". htmlspecialchars($servicos[$i]['canais_de_acesso'])."</li>";
-                echo "<li class='list-group-item'>Forma de solicitação: ". htmlspecialchars($servicos[$i]['forma_de_solicitacao'])."</li>";
-                echo "<li class='list-group-item'>Publico alvo: ". htmlspecialchars($servicos[$i]['publico_alvo'])."</li>";
-                echo "<li class='list-group-item'>Categoria do serviço: ". htmlspecialchars($servicos[$i]['categoria_do_servico'])."</li>";
-                echo "<li class='list-group-item'>Setor inicial: ". htmlspecialchars($servicos[$i]['setor_inicial'])."</li>";
-                echo "<li class='list-group-item'>Documentos obrigatórios: ". htmlspecialchars($servicos[$i]['documentos_obrigatorios'])."</li>";
-                echo "<li class='list-group-item'>Legislação: ". htmlspecialchars($servicos[$i]['legislacao'])."</li>";
-                echo "<li class='list-group-item'>Observações: ". htmlspecialchars($servicos[$i]['observacoes'])."</li>";
-                echo "<li class='list-group-item'>Tipo: ". htmlspecialchars($servicos[$i]['tipo'])."</li>";
-                echo "<li class='list-group-item'>Tempo estimado em dias: ". htmlspecialchars($servicos[$i]['tempo_estimado_dias'])."</li>";
-                echo "<li class='list-group-item'>Custo de serviço: ". htmlspecialchars($servicos[$i]['custo_de_servico'])."</li>";
+                echo "<ul>";
+                echo "<li>". htmlspecialchars($servicos[$i]['descricao'])."</li>";
+                echo "<li>Local de acesso: ". htmlspecialchars($servicos[$i]['local_de_acesso'])."</li>";
+                echo "<li>Canais de acesso: ". htmlspecialchars($servicos[$i]['canais_de_acesso'])."</li>";
+                echo "<li>Forma de solicitação: ". htmlspecialchars($servicos[$i]['forma_de_solicitacao'])."</li>";
+                echo "<li>Publico alvo: ". htmlspecialchars($servicos[$i]['publico_alvo'])."</li>";
+                echo "<li>Categoria do serviço: ". htmlspecialchars($servicos[$i]['categoria_do_servico'])."</li>";
+                echo "<li>Setor inicial: ". htmlspecialchars($servicos[$i]['setor_inicial'])."</li>";
+                echo "<li>Documentos obrigatórios: ". htmlspecialchars($servicos[$i]['documentos_obrigatorios'])."</li>";
+                echo "<li>Legislação: ". htmlspecialchars($servicos[$i]['legislacao'])."</li>";
+                echo "<li>Observações: ". htmlspecialchars($servicos[$i]['observacoes'])."</li>";
+                echo "<li>Tipo: ". htmlspecialchars($servicos[$i]['tipo'])."</li>";
+                echo "<li>Tempo estimado em dias: ". htmlspecialchars($servicos[$i]['tempo_estimado_dias'])."</li>";
+                echo "<li>Custo de serviço: ". htmlspecialchars($servicos[$i]['custo_de_servico'])."</li>";
                 echo "</ul>";
             }
             else

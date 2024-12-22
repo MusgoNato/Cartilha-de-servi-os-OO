@@ -71,6 +71,28 @@ class Banco
             }
         }   
     }
+
+    public function resultado_busca($input_procura)
+    {
+        // Prepara e executa o camndo SQL
+        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE titulo LIKE '%$input_procura%' OR descricao LIKE '%$input_procura%'");
+        $query->execute();
+
+        $linhas = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        if(count($linhas))
+        {
+            echo "<h2>Resultados da busca</h2>\n";
+            foreach($linhas as $linha)
+            {
+                echo "<li><a href=?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}>" . $linha['titulo'] . "</a></li>";
+            }
+        }
+        else
+        {
+            echo "Nenhum resultado encontrado!\n";
+        }
+    }
 }   
 
 ?>
