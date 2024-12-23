@@ -1,98 +1,120 @@
 <?php
-
 namespace Cartilha\BD;
+
 use PDO;
 use PDOException;
 
+/**
+ * A classe Banco é responsavel por fazer a conexão somente uma vez com o banco de dados, evitando multiplas instancias do mesmo
+ * Por isso é usado uma propriedade privada estatica, no codigo como um todo serão mais linhas para pegar a conexao mas somente uso uma instancia
+ */
 class Banco
 {
-    public $host;
-    public $username;
-    public $name_bd;
-    public $pass;
+    private static $instance = null;
+    private $conexao;
 
-    public $table_name;
-
-    public $conexao;
-
-    /**
-     * Summary of __construct
-     * @param mixed $host
-     * @param mixed $username
-     * @param mixed $name_bd
-     * @param mixed $pass
-     */
-    function __construct($host, $username, $name_bd, $pass, $table_name)
-    {
-        $this->host = $host;
-        $this->username = $username;
-        $this->name_bd = $name_bd;
-        $this->pass = $pass;
-        $this->table_name = $table_name;
-
-        $this->conecta_bd();
-
-    }
+    private $host = 'localhost'; 
+    private $username = 'root';
+    private $name_bd = 'cartilha';
+    private $pass = '';
 
     /**
-     * Conecta ao banco de dados
-     * @return void
+     * Construtor privado para evitar instância direta
      */
-    private function conecta_bd()
+    private function __construct()
     {
-        try
+        try 
         {
-            // Faço a conexao por meio do atributo privado da classe, evitando criar um novo objeto e nao usar ele. Após isso seto atributos para tratar os erros como exceção 
             $this->conexao = new PDO("mysql:host={$this->host};dbname={$this->name_bd}", $this->username, $this->pass);
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        }catch(PDOException $e)
+        }catch (PDOException $e) 
         {
-            die("Não foi possível se conectar ao banco de dados!");
+            die("Não foi possível se conectar ao banco de dados: " . $e->getMessage());
         }
     }
 
+    /**
+     * Método para obter a instância única
+     * 
+     * @return Banco
+     */
+    public static function getInstance(): Banco
+    {
+        if (self::$instance === null) 
+        {
+            self::$instance = new Banco();
+        }
+        return self::$instance;
+    }
 
-    public function exibe_secretarias()
-    {   
-        // Prepara e executa o camndo SQL
+    /**
+     * Método para obter a conexão com o banco de dados
+     * 
+     * @return PDO
+     */
+    public function getConexao(): PDO
+    {
+        return $this->conexao;
+    }
+
+    /**
+     * Exibe as secretarias
+     */
+    public function exibeSecretarias()
+    {
         $query = $this->conexao->prepare("SELECT * FROM `secretarias`");
         $query->execute();
 
-        // Transformo em um vetor de objetos para iterar sobre as linhas da tabela selecionada
         $linhas = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if(count($linhas))
+        if (count($linhas)) 
         {
-            foreach($linhas as $linha)
+            foreach ($linhas as $linha) 
             {
-                // Passo para a url o id da secretaria pega do banco de dados
-                echo "<li><a href='?secretaria=".$linha['ID_secretaria']."'>".$linha['nome']."</a></li>";
+                echo "<div class='card' style='width: 18rem;'>";
+                echo "<img src=''...' class='card-img-top' alt=''...'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . htmlspecialchars($linha['nome']) . "</h5>";
+                echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
+                echo "<a href='?secretaria=" . $linha['ID_secretaria'] . "' class='btn btn-primary'>Acesse Serviços</a>";
+                echo "</div>";
+                echo "</div>";
             }
-        }   
+        }
     }
 
-    public function resultado_busca($input_procura)
+    /**
+     * Exibe os resultados da busca
+     * 
+     * @param string $input_procura
+     */
+    public function resultadoBusca($input_procura)
     {
-        // Prepara e executa o camndo SQL
-        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE titulo LIKE '%$input_procura%' OR descricao LIKE '%$input_procura%'");
+        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE titulo LIKE :search OR descricao LIKE :search");
+        $query->bindValue(':search', "%$input_procura%", PDO::PARAM_STR);
         $query->execute();
 
         $linhas = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if(count($linhas))
+        if (count($linhas)) 
         {
             echo "<h2>Resultados da busca</h2>\n";
-            foreach($linhas as $linha)
+            foreach ($linhas as $linha) 
             {
-                echo "<li><a href=?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}>" . $linha['titulo'] . "</a></li>";
+                echo "<div class='card' style='width: 18rem;'>";
+                echo "<img src=''...' class='card-img-top' alt=''...'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . htmlspecialchars($linha['titulo']) . "</h5>";
+                echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
+                echo "<a href='?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}'>Saiba mais</a>";
+                echo "</div>";
+                echo "</div>";
             }
         }
-        else
+        else 
         {
-            echo "Nenhum resultado encontrado!\n";
+            echo "<b>Nenhum resultado encontrado!</b>\n";
         }
     }
-}   
-
+}
 ?>

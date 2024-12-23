@@ -4,7 +4,7 @@ namespace Cartilha\BD;
 use PDO;
 use Cartilha\BD\Banco;
 
-class Servico extends Banco
+class Servico
 {
     public $id_secretaria;
 
@@ -21,25 +21,21 @@ class Servico extends Banco
      * Summary of lista_servico
      * @return void
      */
-    public function exibe_servicos()
+    public function exibeServicos()
     {
-        // Boa pratica eh usar o single ton, somente uma conexao com o banco de dados, assim evito fazer varias conexoes com o banco de dados, acaba por tornar o codigo repetitivo nesse modelo
-        // Preparo a busca do servico relacionado a secretaria selecionada
-        $this->conexao = new PDO("mysql:host=localhost;dbname=cartilha", "root", "");
-        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE ID_secretaria = {$this->id_secretaria}");
-        $query->execute();
+        $banco = Banco::getInstance();
+        $conexao = $banco->getConexao();
 
-        // Vetor criado para percorrer os servicos
+        $query = $conexao->prepare("SELECT * FROM `servico` WHERE ID_secretaria = {$this->id_secretaria}");
+        $query->execute();  
+
         $servicos = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if(count($servicos))
+        if (count($servicos)) 
         {
-            // Quando existir a variavel servico na url, entao mostro as informacoes do servico
             if(isset($_REQUEST['servico']))
             {
-                // Jogada de indice pra pegar o servico correto
                 $i = ((int)$_REQUEST['servico']) - ((int)$_REQUEST['secretaria']);
-                
                 echo "<ul>";
                 echo "<li>". htmlspecialchars($servicos[$i]['descricao'])."</li>";
                 echo "<li>Local de acesso: ". htmlspecialchars($servicos[$i]['local_de_acesso'])."</li>";
@@ -54,20 +50,27 @@ class Servico extends Banco
                 echo "<li>Tipo: ". htmlspecialchars($servicos[$i]['tipo'])."</li>";
                 echo "<li>Tempo estimado em dias: ". htmlspecialchars($servicos[$i]['tempo_estimado_dias'])."</li>";
                 echo "<li>Custo de serviço: ". htmlspecialchars($servicos[$i]['custo_de_servico'])."</li>";
+                echo "<li>" . $servicos[$i]['descricao'] . "</li>";
                 echo "</ul>";
             }
             else
             {
-                foreach($servicos as $servico)
+                foreach ($servicos as $servico) 
                 {
-                    echo "<div class='card' style='width: 18rem;''>";
-                    echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}'>" . htmlspecialchars($servico['titulo'])."</a>";
+                    echo "<div class='card' style='width: 18rem;'>";
+                    echo "<img src=''...' class='card-img-top' alt=''...'>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'>" . htmlspecialchars($servico['titulo']) . "</h5>";
+                    echo "<p class='card-text'>" . htmlspecialchars($servico['descricao']) . "</p>";
+                    echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}'>Saiba mais</a>";
+                    echo "</div>";
                     echo "</div>";
                 }
             }
             
         }
     }
+
 }
 
 ?>

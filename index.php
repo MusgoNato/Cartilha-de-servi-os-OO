@@ -3,7 +3,7 @@
 <!-- Campo de Busca -->
 <div>
     <form method="GET">
-        <input type="search" name="search" placeholder="Digite o que deseja buscar...">
+        <input type="search" name="search" placeholder="O que procura?">
     </form> 
 </div>
 
@@ -14,22 +14,20 @@ require_once 'vendor/autoload.php';
 use Cartilha\BD\Banco;
 use Cartilha\BD\Servico;
 
-$banco = new Banco('localhost', 'root', 'cartilha', '', 'secretarias');
+$banco = Banco::getInstance(); 
 
-// Caso dentro da url exista o id da secretaria, passo o id ao construtor, para listar os servicos relacionados a essa secretaria
-if(isset($_REQUEST['secretaria']))
+// Exibe os serviços de uma secretaria específica
+if (isset($_REQUEST['secretaria'])) 
 {
-    
-    $secretaria = new Servico($_REQUEST['secretaria']);
-
+    $servico = new Servico($_REQUEST['secretaria']);
     echo "<h3>Serviços</h3>";
-    $secretaria->exibe_servicos();
+    $servico->exibeServicos();
 }
 
-// Mostra os resultados da busca
-if(isset($_GET['search']))
+// Exibe os resultados da busca
+if (isset($_GET['search'])) 
 {
-    $banco->resultado_busca($_GET['search']);    
+    $banco->resultadoBusca($_GET['search']);
 }
 
 ?>
@@ -50,7 +48,7 @@ if(isset($_GET['search']))
         <h2>Secretarias</h2>
         <?php
             // Chamo a listagem de secretarias
-            $banco->exibe_secretarias();
+            $banco->exibeSecretarias();
         ?>
     </div>
 </body>
