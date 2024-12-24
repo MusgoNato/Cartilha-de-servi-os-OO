@@ -98,15 +98,21 @@ class Banco
 
         if (count($linhas)) 
         {
-            echo "<h2>Resultados da busca</h2>\n";
+            echo "<h2 align='center'>Resultados da busca</h2>";
+            echo "<div class='container'>";
+            echo "<div class='row'>";
             foreach ($linhas as $linha) 
             {
-                echo "<div class='card' style='width: 18rem;'>";
+                echo "<div class='col-md-4 d-flex align-items-stretch'>"; // Alinhamento uniforme dos cards
+                echo "<div class='card card-custom'>"; // Classe personalizada
                 echo "<img src=''...' class='card-img-top' alt=''...'>";
-                echo "<div class='card-body'>";
+                echo "<div class='card-body d-flex flex-column'>"; // Flexbox para alinhar conteúdo
                 echo "<h5 class='card-title'>" . htmlspecialchars($linha['titulo']) . "</h5>";
                 echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
-                echo "<a href='?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}'>Saiba mais</a>";
+                echo "<div class='mt-auto'>"; // Coloca o botão no final do card
+                echo "<a href='?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
+                echo "</div>";
+                echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
@@ -115,6 +121,8 @@ class Banco
         {
             echo "<b>Nenhum resultado encontrado!</b>\n";
         }
+        echo "</div>";
+        echo "</div>";
     }
 }
 ?>

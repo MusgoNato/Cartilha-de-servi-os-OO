@@ -33,6 +33,8 @@ class Servico
 
         if (count($servicos)) 
         {
+            echo "<h3 align=center>Serviços</h3>";
+            
             if(isset($_REQUEST['servico']))
             {
                 $i = ((int)$_REQUEST['servico']) - ((int)$_REQUEST['secretaria']);
@@ -55,17 +57,25 @@ class Servico
             }
             else
             {
+                echo "<div class='container'>";
+                echo "<div class='row'>"; // Início da linha
                 foreach ($servicos as $servico) 
                 {
-                    echo "<div class='card' style='width: 18rem;'>";
+                    echo "<div class='col-md-4 d-flex align-items-stretch'>"; // Alinhamento uniforme dos cards
+                    echo "<div class='card card-custom'>"; // Classe personalizada
                     echo "<img src=''...' class='card-img-top' alt=''...'>";
-                    echo "<div class='card-body'>";
+                    echo "<div class='card-body d-flex flex-column'>"; // Flexbox para alinhar conteúdo
                     echo "<h5 class='card-title'>" . htmlspecialchars($servico['titulo']) . "</h5>";
                     echo "<p class='card-text'>" . htmlspecialchars($servico['descricao']) . "</p>";
-                    echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}'>Saiba mais</a>";
+                    echo "<div class='mt-auto'>"; // Coloca o botão no final do card
+                    echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
+                    echo "</div>";
+                    echo "</div>";
                     echo "</div>";
                     echo "</div>";
                 }
+                echo "</div>"; // Fim da linha
+                echo "</div>"; // Fim do container
             }
             
         }
