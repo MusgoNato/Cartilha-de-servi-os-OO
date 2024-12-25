@@ -1,11 +1,18 @@
-<h1>Cartilha de Serviços</h1>
+<h1 align="center">Cartilha de Serviços</h1>
 
 <!-- Campo de Busca -->
-<div>
-    <form method="GET">
-        <input type="search" name="search" placeholder="O que procura?">
-    </form> 
+<div class="container mt-4">
+    <form method="GET" class="d-flex">
+        <input 
+            type="search" 
+            name="search" 
+            class="form-control me-2" 
+            placeholder="O que procura?"
+            aria-label="Search">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
 </div>
+
 
 <?php
 
@@ -45,7 +52,7 @@ if (isset($_GET['search']))
 </head>
 <body>
     <div>
-        <h2>Secretarias</h2>
+        <h2 align="center">Secretarias</h2>
         <?php
             // Chamo a listagem de secretarias
             $banco->exibeSecretarias();

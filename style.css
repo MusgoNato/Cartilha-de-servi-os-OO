@@ -1,20 +1,4 @@
-.card {
-    margin-bottom: 15px; /* Espaçamento entre os cartões */
-    display: flex;
-    flex-direction: column; /* Garante que os elementos dentro do card sejam organizados verticalmente */
-}
-.card-custom {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Garante que o conteúdo do card seja distribuído */
-    height: 100%; /* Faz com que todos os cards tenham a mesma altura */
-    width: 100%;
-}
-.card-body {
-    flex-grow: 1; /* Expande o corpo do card */
-    display: flex;
-    flex-direction: column;
-}
-.card-body .mt-auto {
-    margin-top: auto; /* Empurra o botão para o final do card */
+.card-img-top {
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem seja cortada para se ajustar à área */
 }

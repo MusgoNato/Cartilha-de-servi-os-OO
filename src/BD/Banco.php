@@ -40,7 +40,7 @@ class Banco
      */
     public static function getInstance(): Banco
     {
-        if (self::$instance === null) 
+        if(self::$instance === null) 
         {
             self::$instance = new Banco();
         }
@@ -67,19 +67,26 @@ class Banco
 
         $linhas = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if (count($linhas)) 
+        if(count($linhas)) 
         {
-            foreach ($linhas as $linha) 
+            echo "<div class='container'>";
+            echo "<div class='row g-4'>"; 
+            foreach($linhas as $linha) 
             {
-                echo "<div class='card' style='width: 18rem;'>";
-                echo "<img src=''...' class='card-img-top' alt=''...'>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>" . htmlspecialchars($linha['nome']) . "</h5>";
-                echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
-                echo "<a href='?secretaria=" . $linha['ID_secretaria'] . "' class='btn btn-primary'>Acesse Serviços</a>";
+                echo "<div class='col-md-4 d-flex align-items-stretch'>"; 
+                echo "<div class='card card-custom'>"; 
+                echo "<img src='' alt='' class='card-img-top'>";
+                echo "<div class='card-body d-flex flex-column'>";
+                echo "<h5 class='card-title text-truncate' style='max-width: 100%;'>" . htmlspecialchars($linha['nome']) . "</h5>"; 
+                echo "<p class='card-text text-truncate' style='max-width: 100%;'>" . htmlspecialchars($linha['descricao']) . "</p>"; 
+                echo "<a href='?secretaria=" . $linha['ID_secretaria'] . "' class='btn btn-primary mt-auto'>Acesse Serviços</a>"; 
+                echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
+            echo "</div>";
+            echo "</div>"; 
+
         }
     }
 
@@ -90,39 +97,41 @@ class Banco
      */
     public function resultadoBusca($input_procura)
     {
-        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE titulo LIKE :search OR descricao LIKE :search");
-        $query->bindValue(':search', "%$input_procura%", PDO::PARAM_STR);
+        $query = $this->conexao->prepare("SELECT * FROM `servico` WHERE titulo LIKE '%$input_procura%' OR descricao LIKE '%$input_procura%'");
         $query->execute();
 
         $linhas = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if (count($linhas)) 
+        if(count($linhas)) 
         {
             echo "<h2 align='center'>Resultados da busca</h2>";
             echo "<div class='container'>";
-            echo "<div class='row'>";
-            foreach ($linhas as $linha) 
+            echo "<div class='row g-4'>"; 
+            foreach($linhas as $linha) 
             {
-                echo "<div class='col-md-4 d-flex align-items-stretch'>"; // Alinhamento uniforme dos cards
-                echo "<div class='card card-custom'>"; // Classe personalizada
+                echo "<div class='col-md-4 d-flex align-items-stretch'>"; 
+                echo "<div class='card card-custom'>"; 
                 echo "<img src=''...' class='card-img-top' alt=''...'>";
-                echo "<div class='card-body d-flex flex-column'>"; // Flexbox para alinhar conteúdo
+                echo "<div class='card-body d-flex flex-column'>";
                 echo "<h5 class='card-title'>" . htmlspecialchars($linha['titulo']) . "</h5>";
                 echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
-                echo "<div class='mt-auto'>"; // Coloca o botão no final do card
+                echo "<div class='mt-auto'>";
                 echo "<a href='?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
-        }
+            echo "</div>"; 
+            echo "</div>";
+        } 
         else 
         {
-            echo "<b>Nenhum resultado encontrado!</b>\n";
+            echo "<div class='alert alert-warning text-center mt-4' role='alert'>";
+            echo "<strong>Nenhum resultado encontrado!</strong>";
+            echo "</div>";
         }
-        echo "</div>";
-        echo "</div>";
+
     }
 }
 ?>
