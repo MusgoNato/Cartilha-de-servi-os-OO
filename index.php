@@ -1,6 +1,8 @@
+<hr class="border border-primary border-3 opacity-75">
 <header class="container mt-4 text-center">
     <h1 class="text-primary">Cartilha de Serviços</h1>
 </header>
+<hr class="border border-primary border-3 opacity-75">
 
 <!-- Campo de Busca -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -12,7 +14,11 @@
     </a>
     <form method="GET" class="form-inline my-2 my-lg-0 ml-auto">
         <input class="form-control mr-sm-3" type="search" name="search" placeholder="O que procura?" aria-label="Search" required>
-        <button class="btn btn-primary" type="submit">Buscar</button>
+        <button class="btn btn-primary" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+        </button>
     </form>
 </nav>
 
@@ -54,12 +60,17 @@ if (isset($_GET['search']))
     <title>Cartilha</title>
 </head>
 <body>
-    <div>
-        <h2 align="center">Secretarias</h2>
+    <div class="container mt-5">
+    <hr class="border border-primary border-3 opacity-75">
+    <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 700; color:rgb(76, 175, 173);">Secretarias</h2>
+    <hr class="border border-primary border-3 opacity-75">
+    <div class="row g-4">
         <?php
             // Chamo a listagem de secretarias
             $banco->exibeSecretarias();
         ?>
     </div>
+</div>
+
 </body>
 </html>

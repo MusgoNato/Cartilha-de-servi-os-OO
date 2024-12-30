@@ -107,7 +107,7 @@ class Servico
         }
         else
         {
-            echo "<div class='alert alert-warning text-center mt-4' role='alert'>";
+            echo "<div class='alert alert-dark text-center' role='alert'>";
             echo "<strong>Nenhum serviço encontrado!</strong>";
             echo "</div>";
         }
