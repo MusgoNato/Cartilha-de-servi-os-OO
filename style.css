@@ -7,48 +7,57 @@
 {
     display: flex;
 }
-/* Estilo Personalizado */
+
 body {
     background-color: #f8f9fa; /* Cor de fundo suave */
 }
 
-header h1 {
+header h1 
+{
     font-family: 'Arial', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.navbar {
+.navbar 
+{
     padding: 0.5rem 1rem;
 }
 
-.navbar-brand svg {
+.navbar-brand svg 
+{
     margin-right: 0.5rem;
 }
 
-.form-control {
+.form-control 
+{
     border-radius: 20px;
 }
 
-.btn-outline-primary {
+.btn-outline-primary 
+{
     border-radius: 20px;
 }
 
-.card {
+.card 
+{
     border: 1px solid #ddd;
     border-radius: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
+.card:hover 
+{
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-body h5 {
+.card-body h5 
+{
     font-weight: bold;
 }
 
-.card-body .btn {
+.card-body .btn 
+{
     border-radius: 20px;
 }

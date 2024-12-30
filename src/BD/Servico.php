@@ -85,24 +85,29 @@ class Servico
             }
             else
             {
+                echo "<div class='container mt-5'>";
+                echo "<hr class='border border-primary border-3 opacity-75'>";
+                echo "<h2 class='text-center mb-4' style='font-size: 2.5rem; font-weight: 700; color:rgb(76, 175, 173);'>Serviços</h2>";
+                echo "<hr class='border border-primary border-3 opacity-75'>";
+                echo "</div>";
                 echo "<div class='container mt-4'>";
-                echo "<div class='row g-4'>"; // Flexbox para espaçamento entre os cards
+                echo "<div class='row g-4'>";
                 foreach($servicos as $servico) 
                 {
-                    echo "<div class='col-md-4'>"; // Coluna para ajustar largura
-                    echo "<div class='card shadow-sm' style='width: 18rem;'>"; // Tamanho fixo do card
-                    echo "<div class='card-body d-flex flex-column'>"; // Corpo flexível para alinhamento
+                    echo "<div class='col-md-4'>";
+                    echo "<div class='card shadow-sm' style='width: 18rem;'>"; 
+                    echo "<div class='card-body d-flex flex-column'>"; 
                     echo "<h5 class='card-title text-truncate'>" . htmlspecialchars($servico['titulo']) . "</h5>";
                     echo "<p class='card-text text-truncate'>" . htmlspecialchars($servico['descricao']) . "</p>";
-                    echo "<div class='mt-auto'>"; // Coloca o botão no final do card
+                    echo "<div class='mt-auto'>"; 
                     echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
                 }
-                echo "</div>"; // Fim da linha
-                echo "</div>"; // Fim do container
+                echo "</div>";
+                echo "</div>";
             }
         }
         else
