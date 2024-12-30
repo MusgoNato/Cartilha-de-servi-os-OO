@@ -69,26 +69,28 @@ class Banco
 
         if(count($linhas)) 
         {
-            echo "<div class='container'>";
-            echo "<div class='row g-4'>"; 
-            foreach($linhas as $linha) 
+            echo "<div class='container mt-4'>"; // Contêiner principal
+            echo "<div class='row g-4'>"; // Linha com espaçamento entre os itens
+            
+            foreach ($linhas as $linha) 
             {
-                echo "<div class='col-md-4 d-flex align-items-stretch'>"; 
-                echo "<div class='card card-custom'>"; 
-                echo "<img src='' alt='' class='card-img-top'>";
-                echo "<div class='card-body d-flex flex-column'>";
-                echo "<h5 class='card-title text-truncate' style='max-width: 100%;'>" . htmlspecialchars($linha['nome']) . "</h5>"; 
-                echo "<p class='card-text text-truncate' style='max-width: 100%;'>" . htmlspecialchars($linha['descricao']) . "</p>"; 
-                echo "<a href='?secretaria=" . $linha['ID_secretaria'] . "' class='btn btn-primary mt-auto'>Acesse Serviços</a>"; 
+                echo "<div class='col-md-4'>"; // Coluna para ajustar largura
+                echo "<div class='card shadow-sm' style='width: 18rem;'>"; // Tamanho fixo do card
+                echo "<div class='card-body d-flex flex-column'>"; // Corpo flexível para alinhamento
+                echo "<h5 class='card-title text-truncate'>" . htmlspecialchars($linha['nome']) . "</h5>"; // Título truncado
+                echo "<p class='card-text text-truncate' style='flex-grow: 1; overflow: hidden;'>" . htmlspecialchars($linha['descricao']) . "</p>"; // Descrição truncada com overflow oculto
+                echo "<a href='?secretaria=" . $linha['ID_secretaria'] . "' class='btn btn-primary mt-auto'>Acesse Serviços</a>"; // Botão alinhado ao final
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
-            echo "</div>";
-            echo "</div>"; 
-
+            
+            echo "</div>"; // Fim da linha
+            echo "</div>"; // Fim do contêiner
+            
         }
     }
+
 
     /**
      * Exibe os resultados da busca
@@ -109,12 +111,11 @@ class Banco
             echo "<div class='row g-4'>"; 
             foreach($linhas as $linha) 
             {
-                echo "<div class='col-md-4 d-flex align-items-stretch'>"; 
-                echo "<div class='card card-custom'>"; 
-                echo "<img src=''...' class='card-img-top' alt=''...'>";
-                echo "<div class='card-body d-flex flex-column'>";
-                echo "<h5 class='card-title'>" . htmlspecialchars($linha['titulo']) . "</h5>";
-                echo "<p class='card-text'>" . htmlspecialchars($linha['descricao']) . "</p>";
+                echo "<div class='col-md-4'>"; // Coluna para ajustar largura
+                echo "<div class='card shadow-sm' style='width: 18rem;'>"; // Tamanho fixo do card
+                echo "<div class='card-body d-flex flex-column'>"; // Corpo flexível para alinhamento
+                echo "<h5 class='card-title text-trucate'>" . htmlspecialchars($linha['titulo']) . "</h5>";
+                echo "<p class='card-text text-truncate'>" . htmlspecialchars($linha['descricao']) . "</p>";
                 echo "<div class='mt-auto'>";
                 echo "<a href='?secretaria={$linha['ID_secretaria']}&servico={$linha['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
                 echo "</div>";

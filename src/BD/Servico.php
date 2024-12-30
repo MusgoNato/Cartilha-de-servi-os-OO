@@ -85,16 +85,15 @@ class Servico
             }
             else
             {
-                echo "<div class='container'>";
+                echo "<div class='container mt-4'>";
                 echo "<div class='row g-4'>"; // Flexbox para espaçamento entre os cards
                 foreach($servicos as $servico) 
                 {
-                    echo "<div class='col-md-4 d-flex align-items-stretch'>"; // Alinhamento uniforme dos cards
-                    echo "<div class='card card-custom'>"; // Classe personalizada
-                    echo "<img src=''...' class='card-img-top' alt=''>";
-                    echo "<div class='card-body d-flex flex-column'>"; // Flexbox para alinhar conteúdo
-                    echo "<h5 class='card-title'>" . htmlspecialchars($servico['titulo']) . "</h5>";
-                    echo "<p class='card-text'>" . htmlspecialchars($servico['descricao']) . "</p>";
+                    echo "<div class='col-md-4'>"; // Coluna para ajustar largura
+                    echo "<div class='card shadow-sm' style='width: 18rem;'>"; // Tamanho fixo do card
+                    echo "<div class='card-body d-flex flex-column'>"; // Corpo flexível para alinhamento
+                    echo "<h5 class='card-title text-truncate'>" . htmlspecialchars($servico['titulo']) . "</h5>";
+                    echo "<p class='card-text text-truncate'>" . htmlspecialchars($servico['descricao']) . "</p>";
                     echo "<div class='mt-auto'>"; // Coloca o botão no final do card
                     echo "<a href='?secretaria={$this->id_secretaria}&servico={$servico['ID_servico']}' class='btn btn-primary'>Saiba mais</a>";
                     echo "</div>";
