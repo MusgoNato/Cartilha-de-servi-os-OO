@@ -1,8 +1,6 @@
-<div class="container mt-5">
-    <hr class="border border-primary border-3 opacity-75">
-    <header class="container mt-4 text-center"><h1 class="text-primary">Cartilha de Serviços</h1></header>
-    <hr class="border border-primary border-3 opacity-75">
-</div>
+<div class="container mt-4">
+    <header class="container mt-4 text-center"><h1 class="text-primary"><b>Cartilha de Serviços</b></h1></header>
+    </div>
 
 <!-- Campo de Busca -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
