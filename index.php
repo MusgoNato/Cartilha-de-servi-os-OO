@@ -1,8 +1,8 @@
-<hr class="border border-primary border-3 opacity-75">
-<header class="container mt-4 text-center">
-    <h1 class="text-primary">Cartilha de Serviços</h1>
-</header>
-<hr class="border border-primary border-3 opacity-75">
+<div class="container mt-5">
+    <hr class="border border-primary border-3 opacity-75">
+    <header class="container mt-4 text-center"><h1 class="text-primary">Cartilha de Serviços</h1></header>
+    <hr class="border border-primary border-3 opacity-75">
+</div>
 
 <!-- Campo de Busca -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -56,7 +56,6 @@ if (isset($_GET['search']))
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
     <title>Cartilha</title>
 </head>
 <body>
@@ -64,13 +63,13 @@ if (isset($_GET['search']))
     <hr class="border border-primary border-3 opacity-75">
     <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 700; color:rgb(76, 175, 173);">Secretarias</h2>
     <hr class="border border-primary border-3 opacity-75">
+    </div>
     <div class="row g-4">
         <?php
             // Chamo a listagem de secretarias
             $banco->exibeSecretarias();
         ?>
     </div>
-</div>
 
 </body>
 </html>

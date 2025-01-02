@@ -94,9 +94,9 @@ class Servico
                 echo "<div class='row g-4'>";
                 foreach($servicos as $servico) 
                 {
-                    echo "<div class='col-md-4'>";
-                    echo "<div class='card shadow-sm' style='width: 18rem;'>"; 
-                    echo "<div class='card-body d-flex flex-column'>"; 
+                    echo "<div class='col-md-4 mb-4'>";
+                    echo "<div class='card shadow-sm' style='width: 18rem;'>";
+                    echo "<div class='card-body d-flex flex-column'>";
                     echo "<h5 class='card-title text-truncate'>" . htmlspecialchars($servico['titulo']) . "</h5>";
                     echo "<p class='card-text text-truncate'>" . htmlspecialchars($servico['descricao']) . "</p>";
                     echo "<div class='mt-auto'>"; 
